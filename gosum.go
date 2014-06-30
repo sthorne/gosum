@@ -194,7 +194,7 @@ func write() {
     w := os.Stdout
     
     if output != "" {
-        w = os.Open(output)
+        w, _ = os.OpenFile(output, os.O_WRONLY, 0666)
     }
 
     s := Summary{}
