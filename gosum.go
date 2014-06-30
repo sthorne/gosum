@@ -194,7 +194,11 @@ func write() {
     w := os.Stdout
     
     if output != "" {
-        w, _ = os.OpenFile(output, os.O_WRONLY, 0666)
+        if fileexists(output) {
+            w, _ = os.OpenFile(output, os.O_WRONLY, 0666)
+        } else {
+            w, _ = os.Create(output)
+        }
     }
 
     s := Summary{}
